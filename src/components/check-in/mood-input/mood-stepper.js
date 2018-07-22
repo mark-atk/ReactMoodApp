@@ -17,7 +17,7 @@ export class MoodStepper extends React.Component {
     state = {
         activeStep: 0,
         loading: false,
-        mood: 0,
+        mood: 5,
         feelings: {
             depressed: false,
             optimistic: false,

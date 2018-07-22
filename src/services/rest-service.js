@@ -4,10 +4,10 @@ export class RestService {
   static addNewEntry(entry) {
     axios.post('http://localhost:3000/add', entry)
       .then(function (response) {
-        console.log(response);
+        return response;
       })
       .catch(function (error) {
-        console.log(error);
+        return error;
       });
   }
 

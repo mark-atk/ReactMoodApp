@@ -18,15 +18,14 @@ export class InsightsHistory extends React.Component {
     }
 
     render() {
-        console.log(JSON.stringify(this.state.userData));
-
         return (
             <div>                
                 {this.state.userData && this.state.userData.map((item) =>
                     <HistoryItemPanel key={item.id}
                         mood={item.mood}
                         feelings={item.feelings}
-                        dateTime={item.dateTime} />
+                        dateTime={item.dateTime}
+                        comment={item.comment} />
                 )}
             </div>
         );

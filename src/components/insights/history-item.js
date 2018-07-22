@@ -28,17 +28,27 @@ export class HistoryItemPanel extends React.Component {
                         </div>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                    {this.props.feelings.length > 0 
-                                    && 
-                        <Card>
-                            <CardContent>
-                                <Typography gutterBottom variant="headline" component="h2">
-                                    Feelings
+                        {this.props.feelings.length > 0
+                            &&
+                            <Card>
+                                <CardContent>
+                                    <Typography gutterBottom variant="headline" component="h2">
+                                        Feelings
                                 </Typography>
-                                <FeelingsDisplay feelings={this.props.feelings} />
+                                    <FeelingsDisplay feelings={this.props.feelings} />
+                                </CardContent>
+                            </Card>
+                        }
+                        <Card style={{width:"100%"}}>
+                            <CardContent>
+                                <Typography variant="headline" component="h2">
+                                    Comment
+                                </Typography>
+                                <Typography>
+                                    {this.props.comment}
+                                </Typography>
                             </CardContent>
                         </Card>
-                    }
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </div>

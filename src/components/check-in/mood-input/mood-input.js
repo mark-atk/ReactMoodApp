@@ -26,43 +26,36 @@ export class MoodInput extends React.Component {
                     checked={this.state.selectedValue === '7'}
                     onChange={this.handleChange}
                     value="7"
-                    aria-label="Excellent"
                 />😭
                 <Radio
                     checked={this.state.selectedValue === '6'}
                     onChange={this.handleChange}
                     value="6"
-                    aria-label="D"
                 />😢
                 <Radio
                     checked={this.state.selectedValue === '5'}
                     onChange={this.handleChange}
                     value="5"
-                    aria-label="D"
                 />🙁
                 <Radio
                     checked={this.state.selectedValue === '4'}
                     onChange={this.handleChange}
                     value="4"
-                    aria-label="D"
                 />😐
                 <Radio
                     checked={this.state.selectedValue === '3'}
                     onChange={this.handleChange}
                     value="3"
-                    aria-label="C"
                 />😏
                 <Radio
                     checked={this.state.selectedValue === '2'}
                     onChange={this.handleChange}
                     value="2"
-                    aria-label="B"
                 />😌
                 <Radio
                     checked={this.state.selectedValue === '1'}
                     onChange={this.handleChange}
                     value="1"
-                    aria-label="Bad"
                 />😆
             </div>
         );
