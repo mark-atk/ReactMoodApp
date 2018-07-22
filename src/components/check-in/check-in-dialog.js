@@ -30,6 +30,7 @@ export class CheckInDialog extends React.Component {
 
     handleClose = () => {
         this.setState({ open: false });
+        this.props.setDialogFinished();
     };
 
     render() {

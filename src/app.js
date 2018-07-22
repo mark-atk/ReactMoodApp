@@ -42,12 +42,16 @@ export class App extends React.Component {
                             <Button color="inherit" onClick={() => this.clickToggle()}>
                                 Add
                             </Button>
+                            <Button color="inherit" onClick={() => this.refresh()}>
+                                Refresh
+                            </Button>
                         </Toolbar>
                     </AppBar>
                     <br/>
                     <br/>
-                    <CheckInDialog setDialogToggle={click => this.clickToggle = click}/>
-                    <Insights/>
+                    <CheckInDialog setDialogToggle={click => this.clickToggle = click}
+                                    setDialogFinished={() => this.refresh()}/>
+                    <Insights setRefresh={click => this.refresh = click}/>
                 </div>
             </MuiThemeProvider>
         );

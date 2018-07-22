@@ -27,6 +27,11 @@ export class Insights extends React.Component {
     };
 
     componentDidMount() {
+        this.refresh();
+        this.props.setRefresh(this.refresh);
+    }
+
+    refresh = () => {
         RestService.getAllDataForUser(1, (data) => this.updateStateAndData(data));
     }
 
