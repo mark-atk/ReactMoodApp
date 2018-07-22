@@ -11,7 +11,7 @@ export class FeelingInput extends React.Component {
         depressed: false,
         optimistic: false,
         bored: false,
-        happy: true,
+        happy: false,
     };
 
     constructor(props) {

@@ -85,6 +85,18 @@ export class MoodStepper extends React.Component {
         return feelingsArray;
     };
 
+    feelingsValid = () => {
+        const feelings = this.state.feelings;
+        var count = 0;
+        Object.keys(feelings).forEach(function(key,index) {
+            if(feelings[key]) {
+                count++;
+            }
+        });
+
+        return count > 0 ? true : false;;
+    };
+
     render() {
         const { activeStep } = this.state;
 
@@ -110,7 +122,7 @@ export class MoodStepper extends React.Component {
                                     variant="contained"
                                     color="primary"
                                     onClick={this.handleNext}>
-                                    {activeStep === 3 - 1 ? 'Finish' : 'Next'}
+                                    Next
                                 </Button>
                             </div>
                         </StepContent>
@@ -127,8 +139,9 @@ export class MoodStepper extends React.Component {
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    onClick={this.handleNext}>
-                                    {activeStep === 3 - 1 ? 'Finish' : 'Next'}
+                                    onClick={this.handleNext}
+                                    disabled={!this.feelingsValid()}>
+                                    Next
                                 </Button>
                             </div>
                         </StepContent >
@@ -146,7 +159,7 @@ export class MoodStepper extends React.Component {
                                     variant="contained"
                                     color="primary"
                                     onClick={this.handleNext}>
-                                    {activeStep === 3 - 1 ? 'Finish' : 'Next'}
+                                    Finish
                                 </Button>
                             </div>
                         </StepContent>

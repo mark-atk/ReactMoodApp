@@ -1,6 +1,7 @@
 .DS_STORE
 node_modules
 backend/node_modules
+backend/mood1.json
 scripts/flow/*/.flowconfig
 *~
 *.pyc
