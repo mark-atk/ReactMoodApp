@@ -4,16 +4,25 @@ import { MoodAvater } from './mood-avatar';
 
 export class AverageMoodDisplay extends React.Component {
     state = {
-        mood: 1,
+        averageMood: 0,
     };
 
+    constructor(props) {
+        super(props);
+    };
+
+    static getDerivedStateFromProps(props, state) {
+        return { averageMood: props.averageMood };
+    }
+
     render() {
+        const mood = Math.ceil(this.props.averageMood);
+        const avgMood = Math.round(((7-this.props.averageMood)/7) * 100);
+
         return (
             <Chip
-                avatar={
-                    <MoodAvater mood={this.state.mood}/>
-                }
-                label={`Your average mood has been ${((8-this.state.mood)/7)*100} %`}
+                avatar={<MoodAvater mood={mood}/>}
+                label={`Your average mood has been ${avgMood}% positive.`}
             />
         );
     }

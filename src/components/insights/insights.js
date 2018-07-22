@@ -10,25 +10,52 @@ import { InsightsHistory } from './insights-history';
 export class Insights extends React.Component {
     state = {
         userData: [],
+        averageMood: 0,
         donutData: {
             datasets: [{
                 data: [20, 5],
                 backgroundColor: [
-                    '#36a2eb',
                     '#ff6384',
+                    '#36a2eb',
                 ]
             }],
-
-            // These labels appear in the legend and in the tooltips when hovering different arcs
             labels: [
+                'Negative',
                 'Positive',
-                'Negative'
             ]
         }
     };
 
     componentDidMount() {
-        RestService.getAllDataForUser(1, (data) => this.setState({ userData: data }));
+        RestService.getAllDataForUser(1, (data) => this.updateStateAndData(data));
+    }
+
+    updateStateAndData(data) {
+        this.setState({ userData: data.userData }, () => {
+                if (this.state.userData) {
+                    let moodSum = 0;
+                    let moodCount = 0;
+
+                    this.state.userData.forEach(item => {
+                        moodSum = moodSum + +item.mood;
+                        moodCount++;
+                    });
+
+                    const averageMood = (moodSum / moodCount);
+
+                    this.setState({
+                        averageMood: averageMood,
+                        donutData: {
+                            datasets: [{
+                                data: [
+                                    Math.round(averageMood), 
+                                    Math.round(7-averageMood)
+                                ]
+                            }]
+                        }
+                    });
+                }
+            });
     }
 
     render() {
@@ -36,14 +63,16 @@ export class Insights extends React.Component {
             <div>
                 <ExpansionPanel expanded>
                     <ExpansionPanelSummary>
-                        <AverageMoodDisplay />
+                        <AverageMoodDisplay averageMood={this.state.averageMood} />
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <div><Doughnut data={this.state.donutData} /></div>
+                        <div>
+                            <Doughnut data={this.state.donutData} />
+                        </div>
                         <br />
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
-                <InsightsHistory data={this.state.userData}/>
+                <InsightsHistory data={this.state.userData} />
             </div>
         );
     }

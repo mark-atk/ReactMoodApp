@@ -14,7 +14,7 @@ export class InsightsHistory extends React.Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        return { userData: props.data.userData };
+        return { userData: props.data };
     }
 
     render() {
