@@ -13,7 +13,7 @@ export class Insights extends React.Component {
         averageMood: 0,
         donutData: {
             datasets: [{
-                data: [20, 5],
+                data: [1, 1],
                 backgroundColor: [
                     '#ff6384',
                     '#36a2eb',
@@ -54,7 +54,7 @@ export class Insights extends React.Component {
                             datasets: [{
                                 data: [
                                     Math.round(averageMood), 
-                                    Math.round(7-averageMood)
+                                    Math.round(6-averageMood)
                                 ]
                             }]
                         }

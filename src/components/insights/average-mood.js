@@ -17,7 +17,7 @@ export class AverageMoodDisplay extends React.Component {
 
     render() {
         const mood = Math.ceil(this.props.averageMood);
-        const avgMood = Math.round(((7-this.props.averageMood)/7) * 100);
+        const avgMood = Math.round(((6-this.props.averageMood)/6) * 100);
 
         return (
             <Chip
