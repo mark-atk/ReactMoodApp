@@ -12,10 +12,13 @@ const server = new hapi.Server({
 server.route({
   method: 'POST',
   path: '/add',
-  handler: function (request, reply) {
+  handler: (request, reply) => {
     const body = request.payload;
     
+    body.id = data.length;
+    data.push(body);
     console.log(body)
+    console.log("User Data Length : " + data.length);
     return(`success`)
   }
 })
@@ -23,10 +26,16 @@ server.route({
 server.route({
   method:'GET',
   path:'/getAllItemsForUser',
-  handler:function(request,h) {
+  handler: (request,h) => {
     const userId = request.query.userId;
 
-    return data.filter(item => item.userId === userId);
+    console.log("Fetch User With Id : " + userId);
+
+    if(data) {
+      const userData = { userData : data.filter(item => +item.userId === +userId) };
+      console.log("User Data " + JSON.stringify(userData));
+      return userData;
+    }
   }
 });
  

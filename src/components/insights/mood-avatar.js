@@ -5,7 +5,7 @@ import zIndex from '@material-ui/core/styles/zIndex';
 
 export class MoodAvater extends React.Component {
     getRenderEmoji() {
-        switch (this.props.mood) {
+        switch ((+this.props.mood + 1)) {
             case 1:
                 return '😆';
             case 2:
@@ -21,7 +21,7 @@ export class MoodAvater extends React.Component {
             case 7:
                 return '😭';
             default:
-                return "🤣";
+                return "...";
         }
     }
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -60,20 +59,30 @@ export class MoodStepper extends React.Component {
     };
 
     submitData() {
-        this.setState({
-            loading: true
-        }, () => {
-            const data = {
-                userId: 1,
-                mood: this.state.mood,
-                feelings: this.state.feelings,
-                comment: this.state.comment
-            };
+        const data = {
+            userId: 1,
+            dateTime: new Date().toLocaleString(),
+            mood: this.state.mood,
+            feelings: this.generateFeelingsArray(),
+            comment: this.state.comment
+        };
 
-            RestService.addNewEntry(data);
+        RestService.addNewEntry(data);
 
-            this.props.setCloseDialog();
+        this.props.setCloseDialog();
+    };
+
+    generateFeelingsArray() {
+        const feelingsArray = [];
+        const feelings = this.state.feelings;
+
+        Object.keys(feelings).forEach(function(key,index) {
+            if(feelings[key]) {
+                feelingsArray.push(key.toString());
+            }
         });
+
+        return feelingsArray;
     };
 
     render() {

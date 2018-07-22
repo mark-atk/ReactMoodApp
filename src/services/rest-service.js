@@ -11,14 +11,14 @@ export class RestService {
       });
   }
 
-  static getAllDataForUser(userId) {
+  static getAllDataForUser(userId, callBackDataSet) {
     axios.get('http://localhost:3000/getAllItemsForUser', {
       params: {
         userId: userId
       }
     })
       .then(res => {
-        return res.data;
+        callBackDataSet(res.data);
       });
   }
 }
