@@ -39,7 +39,7 @@ export class App extends React.Component {
                             <Typography variant="title"
                                 color="inherit"
                                 style={{ flexGrow: 1 }}>
-                                Unmind Mood Picker App
+                                React Mood Picker App
                             </Typography>
                             <Button color="inherit" onClick={() => this.clickToggle()}>
                                 Add
