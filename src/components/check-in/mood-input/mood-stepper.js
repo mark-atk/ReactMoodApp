@@ -64,6 +64,7 @@ export class MoodStepper extends React.Component {
             loading: true
         }, () => {
             const data = {
+                userId: 1,
                 mood: this.state.mood,
                 feelings: this.state.feelings,
                 comment: this.state.comment

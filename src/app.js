@@ -6,11 +6,9 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
 import blue from '@material-ui/core/colors/blue';
-import { MoodStepper } from './components/check-in/mood-input/mood-stepper';
 import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
 import { CheckInDialog } from './components/check-in/check-in-dialog';
-import { AverageMoodDisplay } from './components/insights/average-mood';
+import { Insights } from './components/insights/insights';
 
 export class App extends React.Component {
     state = {
@@ -49,7 +47,7 @@ export class App extends React.Component {
                     <br/>
                     <br/>
                     <CheckInDialog setDialogToggle={click => this.clickToggle = click}/>
-                    <AverageMoodDisplay/>
+                    <Insights/>
                 </div>
             </MuiThemeProvider>
         );

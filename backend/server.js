@@ -22,10 +22,11 @@ server.route({
 
 server.route({
   method:'GET',
-  path:'/hello',
+  path:'/getAllItemsForUser',
   handler:function(request,h) {
+    const userId = request.query.userId;
 
-      return'hello world';
+    return data.filter(item => item.userId === userId);
   }
 });
  
