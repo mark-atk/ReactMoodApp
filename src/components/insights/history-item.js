@@ -34,12 +34,12 @@ export class HistoryItemPanel extends React.Component {
                                 <CardContent>
                                     <Typography gutterBottom variant="headline" component="h2">
                                         Feelings
-                                </Typography>
+                                    </Typography>
                                     <FeelingsDisplay feelings={this.props.feelings} />
                                 </CardContent>
                             </Card>
                         }
-                        <Card style={{width:"100%"}}>
+                        <Card style={{ width: "100%" }}>
                             <CardContent>
                                 <Typography variant="headline" component="h2">
                                     Comment

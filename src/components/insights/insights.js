@@ -6,6 +6,7 @@ import { AverageMoodDisplay } from './average-mood';
 import { Doughnut, Bar } from 'react-chartjs-2';
 import { RestService } from '../../services/rest-service';
 import { InsightsHistory } from './insights-history';
+import Typography from '@material-ui/core/Typography';
 
 export class Insights extends React.Component {
     state = {
@@ -37,35 +38,38 @@ export class Insights extends React.Component {
 
     updateStateAndData(data) {
         this.setState({ userData: data.userData }, () => {
-                if (this.state.userData) {
-                    let moodSum = 0;
-                    let moodCount = 0;
+            if (this.state.userData) {
+                let moodSum = 0;
+                let moodCount = 0;
 
-                    this.state.userData.forEach(item => {
-                        moodSum = moodSum + +item.mood;
-                        moodCount++;
-                    });
+                this.state.userData.forEach(item => {
+                    moodSum = moodSum + +item.mood;
+                    moodCount++;
+                });
 
-                    const averageMood = (moodSum / moodCount);
+                const averageMood = (moodSum / moodCount);
 
-                    this.setState({
-                        averageMood: averageMood,
-                        donutData: {
-                            datasets: [{
-                                data: [
-                                    Math.round(averageMood), 
-                                    Math.round(6-averageMood)
-                                ]
-                            }]
-                        }
-                    });
-                }
-            });
+                this.setState({
+                    averageMood: averageMood,
+                    donutData: {
+                        datasets: [{
+                            data: [
+                                Math.round(averageMood),
+                                Math.round(6 - averageMood)
+                            ]
+                        }]
+                    }
+                });
+            }
+        });
     }
 
     render() {
         return (
             <div>
+                <Typography gutterBottom variant="headline" component="h2">
+                    Check in summary:
+                </Typography>
                 <ExpansionPanel expanded>
                     <ExpansionPanelSummary>
                         <AverageMoodDisplay averageMood={this.state.averageMood} />
@@ -77,6 +81,9 @@ export class Insights extends React.Component {
                         <br />
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
+                <Typography gutterBottom variant="headline" component="h2">
+                    Review your previous {this.state.userData.length} checkins:
+                </Typography>
                 <InsightsHistory data={this.state.userData} />
             </div>
         );

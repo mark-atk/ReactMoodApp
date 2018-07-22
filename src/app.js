@@ -37,7 +37,7 @@ export class App extends React.Component {
                             <Typography variant="title"
                                 color="inherit"
                                 style={{ flexGrow: 1 }}>
-                                React Mood Picker App
+                                React Mood Tracker App
                             </Typography>
                             <Button color="inherit" onClick={() => this.clickToggle()}>
                                 Add
@@ -47,11 +47,13 @@ export class App extends React.Component {
                             </Button>
                         </Toolbar>
                     </AppBar>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <CheckInDialog setDialogToggle={click => this.clickToggle = click}
-                                    setDialogFinished={() => this.refresh()}/>
-                    <Insights setRefresh={click => this.refresh = click}/>
+                        setDialogFinished={() => this.refresh()} />
+                    <div style={{margin: "12px"}}>
+                        <Insights setRefresh={click => this.refresh = click}/>
+                    </div>
                 </div>
             </MuiThemeProvider>
         );
