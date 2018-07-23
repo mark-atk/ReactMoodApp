@@ -1,5 +1,5 @@
 # ReactMoodApp
-React Mood App
+React Mood App 😎
 
 Install Instructions:
 1) Download repo.
