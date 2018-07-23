@@ -26,3 +26,9 @@ chrome-user-data
 *.swp
 *.swo
 backend/mood1.json
+backend/package-lock.json
+package-lock.json
+yarn.lock
+yarn.lock
+yarn.lock
+yarn.lock
