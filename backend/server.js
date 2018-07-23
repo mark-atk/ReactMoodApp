@@ -26,7 +26,8 @@ server.route({
     body.id = data.length;
     data.insert(body);
     db.saveDatabase();
-    console.log(body)
+    console.log("-------- NEW ENTRY -------");
+    console.log(body);
     console.log("User Data Length : " + data.length);
     return(`success`)
   }
@@ -45,7 +46,8 @@ server.route({
   path:'/getAllItemsForUser',
   handler: (request,h) => {
     const userId = request.query.userId;
-    console.log("Fetch user data with Id : " + userId);
+    console.log("------ FETCH DATA ------- ");
+    console.log("UserId : " + userId);
     databaseInitialize();
 
     if(data) {
@@ -54,7 +56,7 @@ server.route({
         item.id = item.$loki;
       });
 
-      console.log("User Data " + JSON.stringify(userData));
+      console.log(userData);
       return userData;
     }
   }

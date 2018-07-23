@@ -38,28 +38,38 @@ export class Insights extends React.Component {
 
     updateStateAndData(data) {
         this.setState({ userData: data.userData }, () => {
-            if (this.state.userData) {
-                let moodSum = 0;
-                let moodCount = 0;
+            this.calculateAndSetMoodState();
+        });
+    }
 
-                this.state.userData.forEach(item => {
-                    moodSum = moodSum + +item.mood;
-                    moodCount++;
-                });
+    calculateAndSetMoodState() {
+        let moodSum = 0;
+        let moodCount = 0;
 
-                const averageMood = (moodSum / moodCount);
+        this.state.userData.forEach(item => {
+            moodSum = moodSum + +item.mood;
+            moodCount++;
+        });
 
-                this.setState({
-                    averageMood: averageMood,
-                    donutData: {
-                        datasets: [{
-                            data: [
-                                Math.round(averageMood),
-                                Math.round(6 - averageMood)
-                            ]
-                        }]
-                    }
-                });
+        const averageMood = (moodSum / moodCount);
+
+        this.setState({
+            averageMood: averageMood,
+            donutData: {
+                datasets: [{
+                    data: [
+                        Math.round(averageMood),
+                        Math.round(6 - averageMood)
+                    ],
+                    backgroundColor: [
+                        '#ff6384',
+                        '#36a2eb',
+                    ]
+                }],
+                labels: [
+                    'Negative',
+                    'Positive',
+                ]
             }
         });
     }
@@ -67,24 +77,37 @@ export class Insights extends React.Component {
     render() {
         return (
             <div>
-                <Typography gutterBottom variant="headline" component="h2">
-                    Check in summary:
+            {   
+                this.state.userData.length > 0 && 
+                <div>
+                    <Typography gutterBottom variant="headline" component="h2">
+                        Check in summary:
+                    </Typography>
+                    <ExpansionPanel expanded>
+                        <ExpansionPanelSummary>
+                            <AverageMoodDisplay averageMood={this.state.averageMood} />
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
+                            <div>
+                                <Doughnut data={this.state.donutData} />
+                            </div>
+                            <br />
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+                    <Typography gutterBottom variant="headline" component="h2">
+                        Review your previous {this.state.userData.length} checkins:
+                    </Typography>
+                    <InsightsHistory data={this.state.userData} />
+                </div>
+            }
+            {
+                this.state.userData.length === 0 &&
+                <Typography 
+                    style={{margin: "12px"}}
+                    component="h2">
+                    Please start by checking in data using the 'Add' button top right.
                 </Typography>
-                <ExpansionPanel expanded>
-                    <ExpansionPanelSummary>
-                        <AverageMoodDisplay averageMood={this.state.averageMood} />
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
-                        <div>
-                            <Doughnut data={this.state.donutData} />
-                        </div>
-                        <br />
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
-                <Typography gutterBottom variant="headline" component="h2">
-                    Review your previous {this.state.userData.length} checkins:
-                </Typography>
-                <InsightsHistory data={this.state.userData} />
+            }
             </div>
         );
     }
