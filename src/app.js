@@ -8,7 +8,6 @@ import pink from '@material-ui/core/colors/pink';
 import blue from '@material-ui/core/colors/blue';
 import Button from '@material-ui/core/Button';
 import { CheckInDialog } from './components/check-in/check-in-dialog';
-import { Node } from './components/wf-designer/node'
 import { Insights } from './components/insights/insights';
 
 export class App extends React.Component {
@@ -25,7 +24,6 @@ export class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.canvasRef = React.createRef();
     }
 
     render() {
@@ -51,16 +49,11 @@ export class App extends React.Component {
                     </AppBar>
                     <br />
                     <br />
-                    <canvas height={window.innerHeight} width={window.innerWidth} ref={this.canvasRef} style={{position: 'absolute', zIndex:-100 }}/>
-                    <Node id="1" style={{zIndex: '99999'}} canvasRef={this.canvasRef}/>
-                    <Node id="2" style={{zIndex: '99999'}}/>
-                    <br />
-                    <br />
                     <CheckInDialog setDialogToggle={click => this.clickToggle = click}
                         setDialogFinished={() => this.refresh()} />
-                    {/* <div style={{margin: "12px"}}>
+                    <div style={{margin: "12px"}}>
                         <Insights setRefresh={click => this.refresh = click}/>
-                    </div> */}
+                    </div>
                 </div>
             </MuiThemeProvider>
         );
