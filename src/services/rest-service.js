@@ -21,6 +21,19 @@ export class RestService {
         callBackDataSet(res.data);
       });
   }
+
+  static getFilteredDataByDateForUser(userId, dateFrom, dateTo, callBackDataSet) {
+    axios.get('http://localhost:3000/getFilteredItemsByDate', {
+      params: {
+        userId: userId,
+        dateFrom: dateFrom,
+        dateTo: dateTo
+      }
+    })
+      .then(res => {
+        callBackDataSet(res.data);
+      });
+  }
 }
 
 export default RestService;

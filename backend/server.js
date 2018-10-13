@@ -61,7 +61,39 @@ server.route({
     }
   }
 });
+
+server.route({
+  method:'GET',
+  path:'/getFilteredItemsByDate',
+  handler: (request, h) => {
+    console.log("------ FETCH FILTERED DATA ------- ");
+    const fromDate = request.query.dateFrom;
+    const toDate = request.query.toDate;
+    const userId = request.query.userId;
+    console.log(request.query);
+    databaseInitialize();
+    
+    console.log(convertToUnix(fromDate));
+    console.log(data.where(item => +item.userId === +userId));
+
+    const userData = { userData : data.where(item => +item.userId === +userId 
+      && (convertToUnix(item.dateTime) >= convertToUnix(fromDate) 
+      && convertToUnix(item.dateTime) <= convertToUnix(toDate))) };
+
+    userData.userData.forEach(item => {
+      item.id = item.$loki;
+    });
+
+    console.log(userData);
+    return userData;
+
+  }
+});
  
+function convertToUnix(date) {
+  return new Date(date).getTime() / 1000 ;
+}
+
 // Start the server
 async function start() {
 

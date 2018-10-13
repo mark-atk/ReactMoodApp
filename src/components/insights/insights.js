@@ -6,6 +6,7 @@ import { AverageMoodDisplay } from './average-mood';
 import { Doughnut, Bar } from 'react-chartjs-2';
 import { RestService } from '../../services/rest-service';
 import { InsightsHistory } from './insights-history';
+import { DateFilter } from './date-filter';
 import Typography from '@material-ui/core/Typography';
 
 export class Insights extends React.Component {
@@ -34,6 +35,10 @@ export class Insights extends React.Component {
 
     refresh = () => {
         RestService.getAllDataForUser(1, (data) => this.updateStateAndData(data));
+    }
+
+    refreshWithDateFilter = (fromDate, toDate) => {
+        RestService.getFilteredDataByDateForUser(1, fromDate, toDate, (data) => this.updateStateAndData(data))
     }
 
     updateStateAndData(data) {
@@ -97,6 +102,7 @@ export class Insights extends React.Component {
                     <Typography gutterBottom variant="headline" component="h2">
                         Review your previous {this.state.userData.length} checkins:
                     </Typography>
+                    <DateFilter filterCallback={this.refreshWithDateFilter}/>
                     <InsightsHistory data={this.state.userData} />
                 </div>
             }

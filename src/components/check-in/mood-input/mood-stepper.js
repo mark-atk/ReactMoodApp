@@ -61,7 +61,7 @@ export class MoodStepper extends React.Component {
     submitData() {
         const data = {
             userId: 1,
-            dateTime: new Date().toLocaleString(),
+            dateTime: new Date(),
             mood: this.state.mood,
             feelings: this.generateFeelingsArray(),
             comment: this.state.comment
